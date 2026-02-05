@@ -20,13 +20,17 @@ const staggerContainer = {
 };
 
 export default function HomeClient() {
+    const handleLogin=()=>{
+        window.location.href="/api/auth/login"
+    }
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-black selection:text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-xl border-b border-white/20 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="font-bold text-xl tracking-tight">Support <span className="">AI</span></div>
-          <button className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200">
+          <button className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200"
+          onClick={handleLogin}>
             Login
           </button>
         </div>
