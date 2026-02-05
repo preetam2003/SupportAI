@@ -25,10 +25,15 @@ export async function GET(req: NextRequest) {
     // For now, we'll just redirect to the home page or a dashboard
     // You might want to set a cookie with the access token or a session ID
 
-    const response = NextResponse.redirect(new URL("/", req.url));
+    const response = NextResponse.redirect(new URL("/dashboard", req.url));
     
-    // Set a cookie (example)
-    // response.cookies.set("token", accessToken, { httpOnly: true, secure: true });
+    // Set a cookie with the access token
+    response.cookies.set("access_token", accessToken, { 
+      httpOnly: true, 
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7 // 1 week
+    });
 
     return response;
   } catch (err: any) {
